@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class BaseState : MonoBehaviour
+public abstract class BaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    protected PlayerController player;
+
+    public BaseState(PlayerController player)
     {
-        
+        this.player = player;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public virtual void EnterState() { }
+    public virtual void UpdateState() { }
+    public virtual void ExitState() { }
 }
