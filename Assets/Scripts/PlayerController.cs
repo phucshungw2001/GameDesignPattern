@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     private BaseState currentState;
 
+    public int health = 5;
+
     private void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
