@@ -32,4 +32,14 @@ public class StopWatch : MonoBehaviour
         //textBox.text = minute + " : " + timeStart.ToString("F0");
 
     }
+
+    private void FixedUpdate()
+    {
+        timeStart += Time.deltaTime;
+        if (timeStart >= 60)
+        {
+            timeStart -= 60;
+            minute += 1;
+        }
+    }
 }
