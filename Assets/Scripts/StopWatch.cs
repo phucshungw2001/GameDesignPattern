@@ -22,13 +22,13 @@ public class StopWatch : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {/*
+    {
         timeStart += Time.deltaTime;
         if (timeStart >= 60)
         {
             timeStart -= 60;
             minute += 1;
-        }*/
+        }
         //textBox.text = minute + " : " + timeStart.ToString("F0");
 
     }
