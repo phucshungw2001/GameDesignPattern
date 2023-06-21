@@ -7,17 +7,17 @@ public class Health : MonoBehaviour
     public PlayerController player;
 
     public Sprite[] spriteHealth;
-    
+
     public UnityEngine.UI.Text imageHealth;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent < PlayerController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
-     void FixedUpdate()
+    void FixedUpdate()
     {
-       // imageHealth.sprite = spriteHealth[player.health];
+        // imageHealth.sprite = spriteHealth[player.health];
     }
 }
