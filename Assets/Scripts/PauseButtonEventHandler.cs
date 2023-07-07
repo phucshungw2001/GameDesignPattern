@@ -49,13 +49,13 @@ public class PauseButtonEventHandler : MonoBehaviour
 
     public void TurnOnMusic()
     {
-        // TODO
+        AudioListener.pause = false;
     }
 
 
     public void TurnOffMusic()
     {
-        // TODO
+        AudioListener.pause = true;
     }
 
 
