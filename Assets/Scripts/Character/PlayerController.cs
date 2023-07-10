@@ -66,4 +66,9 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Attack", false);
         isAttacking = false;
     }
+
+    public Vector2 GetPosition()
+    {
+        return transform.position;
+    }
 }
