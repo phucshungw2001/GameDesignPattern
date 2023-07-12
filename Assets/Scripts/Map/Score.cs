@@ -6,14 +6,10 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour
 {
     public Text scoreText;
-    int score = 0;
-    float time;
-    float timeIncrementScore=1f;
-    // Start is called before the first frame update
+    int score = -1;
     void Start()
     {
         scoreText.text = "Score: " + score;
-        time = timeIncrementScore;
     }
 
     // Update is called once per frame
@@ -21,15 +17,5 @@ public class Score : MonoBehaviour
     {
         score++;
         scoreText.text = "Score: " + score;
-    }
-    private void Update()
-    {
-        time -= Time.deltaTime;
-        if (time<=0)
-        {
-            incrementScore();
-            time = timeIncrementScore;
-        }
-        
     }
 }
