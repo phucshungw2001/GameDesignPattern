@@ -11,7 +11,7 @@ public class SpawmSpikes : MonoBehaviour
     void Start()
     {
         int random= Random.Range(0, 100);
-        if (random<=30)
+        if (random<=50)
         {
             spikes= Instantiate(spikes, point.transform.position, Quaternion.identity);
             spikes.transform.SetParent(parent);

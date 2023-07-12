@@ -11,7 +11,7 @@ public class SpeedMap : MonoBehaviour
     void Start()
     {
         time = timeIncrementSpeed;
-        speed = 0.9f;
+        speed = 1.6f;
     }
 
     // Update is called once per frame
