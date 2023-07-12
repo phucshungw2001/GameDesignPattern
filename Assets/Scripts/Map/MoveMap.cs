@@ -9,7 +9,7 @@ public class MoveMap : MonoBehaviour
     private void Start()
     {
         speedMap=FindObjectOfType<SpeedMap>();  
-        speed = 0.9f;
+        speed = speedMap.speed;
 
     }
     private void Update()
