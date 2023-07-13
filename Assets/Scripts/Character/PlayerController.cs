@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
 
-        currentState = new IdleState(this);
+        currentState = new RunningState(this); // Bắt đầu với trạng thái Running
         currentState.EnterState();
     }
 
@@ -44,6 +44,28 @@ public class PlayerController : MonoBehaviour
         {
             sprite.flipX = true;
         }
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Jump();
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            Attack();
+        }
+    }
+
+    private void Jump()
+    {
+        currentState.Jump(); // Gọi hàm nhảy từ trạng thái hiện tại
+    }
+
+    private void Attack()
+    {
+        currentState.Attack(); // Gọi hàm tấn công từ trạng thái hiện tại
     }
 
     public void ChangeState(BaseState newState)

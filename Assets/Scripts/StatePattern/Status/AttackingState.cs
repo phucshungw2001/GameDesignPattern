@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Status
 {
@@ -19,10 +14,16 @@ namespace Assets.Scripts.Status
 
         public override void UpdateState()
         {
-            float move = Input.GetAxis("Horizontal");
-            if (Mathf.Abs(move) == 0)
+            float move = 1f; // Luôn di chuyển về phía trước
+
+            if (Input.GetMouseButtonDown(0))
             {
-                player.ChangeState(new IdleState(player));
+                Jump();
+            }
+
+            if (move == 0)
+            {
+                player.ChangeState(new RunningState(player)); // Nếu không di chuyển, chuyển sang trạng thái chạy
             }
         }
 
@@ -30,6 +31,11 @@ namespace Assets.Scripts.Status
         {
             player.animator.SetBool("Attack", false);
             player.isAttacking = false;
+        }
+
+        public override void Jump()
+        {
+            player.ChangeState(new JumpingState(player)); // Chuyển sang trạng thái nhảy
         }
     }
 }

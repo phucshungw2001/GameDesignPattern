@@ -1,4 +1,4 @@
-public abstract class BaseState
+﻿public abstract class BaseState
 {
     protected PlayerController player;
 
@@ -10,4 +10,12 @@ public abstract class BaseState
     public virtual void EnterState() { }
     public virtual void UpdateState() { }
     public virtual void ExitState() { }
+
+    public virtual void Jump()
+    {
+    }
+
+    public virtual void Attack()
+    {
+    }
 }
