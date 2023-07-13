@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,11 +20,21 @@ public class PlayerController : MonoBehaviour
 
     private BaseState currentState;
 
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashingPower = 3f;
+    private float dashingTime = 0.2f;
+    private float dashingCooldown = 1f;
+
+    [SerializeField] private TrailRenderer trailRenderer; 
+    Health health;
+
     private void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        health = FindObjectOfType<Health>();
 
         currentState = new RunningState(this); // Bắt đầu với trạng thái Running
         currentState.EnterState();
@@ -31,6 +42,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(isDashing)
+        {
+            return;
+        }
         currentState.UpdateState();
 
         float move = Input.GetAxis("Horizontal");
@@ -48,6 +63,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (isDashing)
+        {
+            return;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             Jump();
@@ -55,6 +74,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             Attack();
+        }
+        if(Input.GetKeyDown(KeyCode.Space) && canDash)
+        {
+            StartCoroutine(Dash());
         }
     }
 
@@ -92,5 +115,30 @@ public class PlayerController : MonoBehaviour
     public Vector2 GetPosition()
     {
         return transform.position;
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        float orginalGravity = rigidbody2D.gravityScale;
+        rigidbody2D.gravityScale = 0f;
+        rigidbody2D.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        trailRenderer.emitting = true;
+        yield return new WaitForSeconds(dashingTime);
+        trailRenderer.emitting = false;
+        rigidbody2D.gravityScale = orginalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "DeadLine")
+        {
+            health.GetDamage(5);
+            SceneManager.LoadScene(1);
+        }
     }
 }

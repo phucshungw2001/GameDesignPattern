@@ -25,13 +25,18 @@ public class Health : MonoBehaviour
         if (other.tag == "Orange")
         {
             Debug.Log("Orange");
-            progressBar.value--;
+            GetDamage(1);
         }
 
         if (other.tag == "Green")
         {
             Debug.Log("Green");
-            progressBar.value = progressBar.value - 1;
+            GetDamage(1);
         }
+    }
+
+    public void GetDamage(int damage)
+    {
+        progressBar.value -= damage;
     }
 }
