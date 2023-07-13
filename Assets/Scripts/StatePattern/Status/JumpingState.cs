@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static PlayerController;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Status
 {
@@ -23,18 +17,23 @@ namespace Assets.Scripts.Status
         {
             if (player.isLand)
             {
-                player.ChangeState(new IdleState(player));
+                player.ChangeState(new RunningState(player)); // Nếu chạm đất, chuyển sang trạng thái chạy
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetMouseButtonDown(1))
             {
-                player.ChangeState(new AttackingState(player));
+                Attack();
             }
         }
 
         public override void ExitState()
         {
             player.animator.SetFloat("Jump", 0);
+        }
+
+        public override void Attack()
+        {
+            player.ChangeState(new AttackingState(player)); // Chuyển sang trạng thái tấn công
         }
     }
 }

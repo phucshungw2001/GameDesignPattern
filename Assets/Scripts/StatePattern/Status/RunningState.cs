@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using static PlayerController;
 using UnityEngine;
 
+using UnityEngine;
+
 namespace Assets.Scripts.Status
 {
     public class RunningState : BaseState
@@ -14,27 +16,34 @@ namespace Assets.Scripts.Status
 
         public override void EnterState()
         {
-            player.animator.SetFloat("Run", Mathf.Abs(Input.GetAxis("Horizontal")));
+            player.animator.SetFloat("Run", 1); // Đặt giá trị Run = 1 để chạy animation
         }
 
         public override void UpdateState()
         {
-            float move = Input.GetAxis("Horizontal");
+            float move = 1f; // Luôn di chuyển về phía trước
 
-            if (Mathf.Abs(move) == 0)
+            if (Input.GetMouseButtonDown(0))
             {
-                player.ChangeState(new IdleState(player));
+                Jump();
             }
 
-            if (Input.GetKey(KeyCode.UpArrow))
+            if (Input.GetMouseButtonDown(1))
             {
-                player.ChangeState(new JumpingState(player));
+                Attack();
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                player.ChangeState(new AttackingState(player));
-            }
+            player.rigidbody2D.velocity = new Vector2(move * 2, player.rigidbody2D.velocity.y);
+        }
+
+        public override void Jump()
+        {
+            player.ChangeState(new JumpingState(player)); // Chuyển sang trạng thái nhảy
+        }
+
+        public override void Attack()
+        {
+            player.ChangeState(new AttackingState(player)); // Chuyển sang trạng thái tấn công
         }
     }
 }
