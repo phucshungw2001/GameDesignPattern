@@ -48,17 +48,7 @@ public class PlayerController : MonoBehaviour
         }
         currentState.UpdateState();
 
-        float move = Input.GetAxis("Horizontal");
-        rigidbody2D.velocity = new Vector2(move * speed, rigidbody2D.velocity.y);
-
-        if (move > 0)
-        {
-            sprite.flipX = false;
-        }
-        if (move < 0)
-        {
-            sprite.flipX = true;
-        }
+        rigidbody2D.velocity = new Vector2((float)0.015 * speed, rigidbody2D.velocity.y);
     }
 
     private void Update()
