@@ -10,11 +10,13 @@ public class MenuHomePage : MonoBehaviour
     public void onBtnPlayClick()
     {
         SceneManager.LoadScene("GameScenes");
+        Time.timeScale = 1;
     }
 
     public void onBtnLoadClick()
     {
         SceneManager.LoadScene("GameScenes");
+        Time.timeScale = 1;
     }
 
     public void onBtnExitClick()

@@ -23,6 +23,7 @@ public class GameOver : MonoBehaviour
     public void NewGame()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
     }
 
     public void ExitGame()

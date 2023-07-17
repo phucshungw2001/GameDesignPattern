@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TrailRenderer trailRenderer; 
     Health health;
 
+    private bool isJumpPressed = false;
+    private float timeBetweenPresses = 0f;
+
     private void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -53,23 +56,52 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (isDashing)
-        {
-            return;
+        /*    if (isDashing)
+            {
+                return;
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                Jump();
+            }
+            if (Input.GetKeyDown(KeyCode.Space) && canDash)
+            {
+                StartCoroutine(Dash());
+            }*/
+            if (isDashing)
+            {
+                return;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (!isJumpPressed)
+                {
+                    isJumpPressed = true;
+                    Jump();
+                }
+                else
+                {
+                    if (timeBetweenPresses <= 0.3f && canDash) 
+                    {
+                        StartCoroutine(Dash());
+                    }
+                    isJumpPressed = false;
+                    timeBetweenPresses = 0f;
+                }
+            }
+
+            if (isJumpPressed)
+            {
+                timeBetweenPresses += Time.deltaTime;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) && canDash)
+            {
+                StartCoroutine(Dash());
+            }
         }
-        if (Input.GetMouseButtonDown(0))
-        {
-            Jump();
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            Attack();
-        }
-        if(Input.GetKeyDown(KeyCode.Space) && canDash)
-        {
-            StartCoroutine(Dash());
-        }
-    }
+
 
     private void Jump()
     {
@@ -122,6 +154,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

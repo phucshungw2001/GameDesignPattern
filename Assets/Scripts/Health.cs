@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -10,10 +11,9 @@ public class Health : MonoBehaviour
 
     void Start()
     {
-        progressBar.maxValue = 5;
-        progressBar.value = 5;
+        progressBar.maxValue = 3;
+        progressBar.value = 3;
 
-        // Lấy reference đến component GameOver
         gameOver = FindObjectOfType<GameOver>();
     }
 
@@ -26,9 +26,9 @@ public class Health : MonoBehaviour
             bulletViewportPosition.y < 0 || bulletViewportPosition.y > 1)
         {
             progressBar.value = -1;
-            if (progressBar.value <= 0)
+            if (progressBar.value < 1)
             {
-                // Nếu máu về dưới 0, hiển thị giao diện Game Over
+               // Time.timeScale = 0; 
                 gameOver.ShowGameOverUI();
             }
         }
@@ -36,16 +36,7 @@ public class Health : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Orange")
-        {
-            GetDamage(1);
-        }
-        
-        if (other.tag == "Green")
-        {
-            GetDamage(1);
-        }
-        if (other.tag == "Spikes")
+        if (other.tag == "Orange" || other.tag == "Green" || other.tag == "Spikes")
         {
             GetDamage(1);
         }
@@ -54,5 +45,11 @@ public class Health : MonoBehaviour
     public void GetDamage(int damage)
     {
         progressBar.value -= damage;
+
+        if (progressBar.value < 1)
+        {
+            Time.timeScale = 0; 
+            gameOver.ShowGameOverUI();
+        }
     }
 }
