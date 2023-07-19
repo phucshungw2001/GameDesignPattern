@@ -36,12 +36,36 @@ public class Health : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Orange" || other.tag == "Green" || other.tag == "Spikes")
+        if (other.tag == "Orange")
+        {
+            GetDamage(1);
+        }
+
+        if (other.tag == "Green")
+        {
+            GetDamage(1);
+        }
+        if (other.tag == "Spikes")
         {
             GetDamage(1);
         }
     }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Orange"))
+        {
+            GetDamage(1);
+        }
 
+        if (other.gameObject.CompareTag("Green"))
+        {
+            GetDamage(1);
+        }
+        if (other.gameObject.CompareTag("Fly"))
+        {
+            GetDamage(1);
+        }
+    }
     public void GetDamage(int damage)
     {
         progressBar.value -= damage;

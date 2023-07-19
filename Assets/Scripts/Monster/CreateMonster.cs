@@ -15,7 +15,7 @@ public class CreateMonster : AbstractFactory
     }
     public override void RandomMonsterFly()
     {
-        //monsterInstantiate = Instantiate(monsterfly, positionMonster.transform.position, Quaternion.identity);
-        //monsterInstantiate.transform.SetParent(positionMonsterFly);
+        monsterInstantiate = Instantiate(monsterfly, positionMonster.transform.position, Quaternion.identity);
+        monsterInstantiate.transform.SetParent(positionMonster);
     }
 }
