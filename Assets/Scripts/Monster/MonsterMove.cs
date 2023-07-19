@@ -28,4 +28,11 @@ public class MonsterMove : MonoBehaviour
             direction = -direction;
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
