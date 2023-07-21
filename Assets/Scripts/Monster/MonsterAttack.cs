@@ -21,7 +21,7 @@ public class MonsterAttack : MonoBehaviour
             if (checkattack)
             {
                 rb = GetComponent<Rigidbody2D>();
-                StartCoroutine(startAttack());
+                startAttack();
                 checkattack = false;
             }
         }
@@ -33,9 +33,8 @@ public class MonsterAttack : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    IEnumerator startAttack()
+    void startAttack()
     {
-        yield return new WaitForSeconds(0.1f);
         playerTranform = GameObject.FindGameObjectWithTag("Player");
         Vector2 direction = playerTranform.transform.position - transform.position;
         rb.velocity = new Vector2(direction.x, direction.y).normalized * moveForce;

@@ -19,7 +19,7 @@ public class RamdomMonsterNormal : MonoBehaviour
             {
                 factory = FindObjectOfType<AbstractFactory>();
                 factory.positionMonster = monsterPosition;
-                factory.GetComponent<AbstractFactory>().RandomMonster();
+                factory.GetComponent<AbstractFactory>().Monster();
             }
         }
         

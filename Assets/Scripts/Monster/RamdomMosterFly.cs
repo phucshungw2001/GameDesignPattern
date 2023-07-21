@@ -18,7 +18,7 @@ public class RamdomMosterFly : MonoBehaviour
             {
                 factory = FindObjectOfType<AbstractFactory>();
                 factory.positionMonster = monsterPosition;
-                factory.GetComponent<AbstractFactory>().RandomMonsterFly();
+                factory.GetComponent<AbstractFactory>().MonsterFly();
             }
         }
        
