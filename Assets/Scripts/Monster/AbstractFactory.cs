@@ -5,6 +5,6 @@ using UnityEngine;
 public abstract class AbstractFactory : MonoBehaviour
 {
     public Transform positionMonster;
-    public abstract void RandomMonster();
-    public abstract void RandomMonsterFly();
+    public abstract void Monster();
+    public abstract void MonsterFly();
 }
