@@ -45,10 +45,10 @@ public class Health : MonoBehaviour
         {
             GetDamage(1);
         }
-        if (other.tag == "Spikes")
+        /*if (other.tag == "Spikes")
         {
             GetDamage(1);
-        }
+        }*/
     }
     private void OnCollisionEnter2D(Collision2D other)
     {

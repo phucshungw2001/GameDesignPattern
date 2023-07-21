@@ -8,7 +8,7 @@ public class DestroyMap : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Land"))
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
     }
 }
