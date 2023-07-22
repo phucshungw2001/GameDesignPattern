@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class MonsterMove : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class MonsterMove : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveDirection;
     float direction;
+    private SpriteRenderer sprite;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,6 +22,14 @@ public class MonsterMove : MonoBehaviour
     void FixedUpdate()
     {
         rb.velocity = moveDirection * moveSpeed;
+      /*  if (rb.velocity.x > 0)
+        {
+            sprite.flipX = false;
+        }
+        if (rb.velocity.x < 0)
+        {
+            sprite.flipX = true;
+        }*/
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

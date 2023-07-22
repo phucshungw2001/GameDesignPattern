@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseButtonEventHandler : MonoBehaviour
 {
-
     private GameObject _pauseGamePanel;
     private GameObject _settingPanel;
     private GameObject _informationButton;
     private GameObject _informationText;
     private bool _enabled = false;
+    public string scoreKey = "Score";
+    public string healthKey = "health";
+    private Slider progressBar;
 
     // Start is called before the first frame update
     void Start()
@@ -43,17 +47,21 @@ public class PauseButtonEventHandler : MonoBehaviour
 
     public void SaveGame()
     {
-        // TODO
+        PlayerPrefs.SetInt("save", 1);
+        Score socreSave = FindObjectOfType<Score>();
+        float score = socreSave.getScore();
+        PlayerPrefs.SetInt(scoreKey, (int)score);
+        
+        Health health = FindObjectOfType<Health>();
+        float healthValue = health.getHealth();
+        PlayerPrefs.SetInt(healthKey, (int)healthValue);
     }
-
 
     public void Setting()
     {
         _pauseGamePanel.SetActive(false);
         _settingPanel.SetActive(true);
     }
-
-
 
     public void TurnOnMusic()
     {

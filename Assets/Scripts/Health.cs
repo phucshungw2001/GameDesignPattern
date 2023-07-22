@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Globalization;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Health : MonoBehaviour
 {
@@ -8,12 +10,16 @@ public class Health : MonoBehaviour
     [SerializeField] Slider progressBar;
     private Camera mainCamera;
     private GameOver gameOver;
+    public string healthKey = "health";
 
     void Start()
     {
         progressBar.maxValue = 3;
         progressBar.value = 3;
-
+        if (PlayerPrefs.GetInt("isLoad") == 1)
+        {
+            loadHealth();
+        }
         gameOver = FindObjectOfType<GameOver>();
     }
 
@@ -32,6 +38,20 @@ public class Health : MonoBehaviour
                 gameOver.ShowGameOverUI();
             }
         }
+    }
+
+    public void loadHealth()
+    {
+        progressBar.value = PlayerPrefs.GetInt(healthKey, 0);
+        if (progressBar.value != 0)
+        {
+            Update();
+        }
+    }
+
+    public float getHealth()
+    {
+        return progressBar.value;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

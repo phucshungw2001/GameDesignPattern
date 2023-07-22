@@ -7,6 +7,8 @@ public class GameOver : MonoBehaviour
 
     private void Start()
     {
+        PlayerPrefs.SetInt("isLoad", 0);
+        PlayerPrefs.SetInt("save", 0);
         HideGameOverUI();
     }
 
