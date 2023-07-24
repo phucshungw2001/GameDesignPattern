@@ -14,8 +14,8 @@ public class Health : MonoBehaviour
 
     void Start()
     {
-        progressBar.maxValue = 3;
-        progressBar.value = 3;
+        progressBar.maxValue = 5;
+        progressBar.value = 5;
         if (PlayerPrefs.GetInt("isLoad") == 1)
         {
             loadHealth();

@@ -24,13 +24,18 @@ public class Score : MonoBehaviour
         score++;
         scoreText.text = "Score: " + score;
     }
+    public void newScore()
+    {
+        scoreText.text = "Score: " + score;
+    }
 
     public void loadScore()
     {
+        Debug.Log(score);
         score = PlayerPrefs.GetInt(scoreKey, 0);
         if (score != 0)
         {
-            incrementScore();
+            newScore();
         }
     }
 

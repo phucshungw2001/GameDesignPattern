@@ -51,7 +51,6 @@ public class PauseButtonEventHandler : MonoBehaviour
         Score socreSave = FindObjectOfType<Score>();
         float score = socreSave.getScore();
         PlayerPrefs.SetInt(scoreKey, (int)score);
-        
         Health health = FindObjectOfType<Health>();
         float healthValue = health.getHealth();
         PlayerPrefs.SetInt(healthKey, (int)healthValue);

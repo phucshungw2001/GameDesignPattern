@@ -22,14 +22,6 @@ public class MonsterMove : MonoBehaviour
     void FixedUpdate()
     {
         rb.velocity = moveDirection * moveSpeed;
-      /*  if (rb.velocity.x > 0)
-        {
-            sprite.flipX = false;
-        }
-        if (rb.velocity.x < 0)
-        {
-            sprite.flipX = true;
-        }*/
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -37,12 +29,16 @@ public class MonsterMove : MonoBehaviour
         {
             direction = -direction;
         }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
         }
     }
+/*    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
+    }*/
 }
